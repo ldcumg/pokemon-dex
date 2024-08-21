@@ -26,7 +26,6 @@ const PokemonCard = ({ props }) => {
   }, []);
 
   const addPokemon = () => {
-    console.log("selectedPokemon", selectedPokemon);
     if (!selectedPokemon.includes("pokeBall")) {
       SwalAlert("소유할 수 있는 포켓몬이 가득 찼습니다.", "error");
       return;
