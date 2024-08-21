@@ -12,7 +12,7 @@ const PokemonCard = ({ props }) => {
     setSelectedMark,
   } = props;
 
-  const scrollY = useRef();
+  const scrollY = useRef(null);
 
   const linkedScrollY = useLocation().state?.scrollY;
   const linkedList = useLocation().state?.selectedPokemon ?? selectedPokemon;
