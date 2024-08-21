@@ -2,15 +2,12 @@ import { Link, useLocation } from "react-router-dom";
 import StBtn from "../styles/StBtn";
 import { useEffect, useRef } from "react";
 import { SwalAlert } from "../styles/Swal";
+import { useContext } from "react";
+import { PokemonContext } from "../context/PokemonContext";
 
-const PokemonCard = ({ props }) => {
-  const {
-    pokemon,
-    selectedPokemon,
-    setSelectedPokemon,
-    selectedMark,
-    setSelectedMark,
-  } = props;
+const PokemonCard = ({ pokemon }) => {
+  const { selectedPokemon, setSelectedPokemon, selectedMark, setSelectedMark } =
+    useContext(PokemonContext);
 
   const scrollY = useRef();
 
@@ -26,7 +23,6 @@ const PokemonCard = ({ props }) => {
   }, []);
 
   const addPokemon = () => {
-    console.log("selectedPokemon", selectedPokemon);
     if (!selectedPokemon.includes("pokeBall")) {
       SwalAlert("소유할 수 있는 포켓몬이 가득 찼습니다.", "error");
       return;

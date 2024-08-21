@@ -1,11 +1,13 @@
+import { useContext } from "react";
+import { PokemonContext } from "../context/PokemonContext";
 import PokemonCard from "./PokemonCard";
 
-const PokemonList = (props) => {
-  const MOCK_DATA = props.MOCK_DATA;
+const PokemonList = () => {
+  const { MOCK_DATA } = useContext(PokemonContext);
   return (
     <ul id="pokemon-list-container">
       {MOCK_DATA.map((pokemon) => {
-        return <PokemonCard key={pokemon.id} props={{ ...props, pokemon }} />;
+        return <PokemonCard key={pokemon.id} pokemon={pokemon} />;
       })}
     </ul>
   );

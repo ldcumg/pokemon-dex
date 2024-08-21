@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import StBtn from "../styles/StBtn";
 import { SwalAlert, SwalConfirm } from "../styles/Swal";
+import { useContext } from "react";
+import { PokemonContext } from "../context/PokemonContext";
 
-const Dashboard = ({
-  scrollRef,
-  selectedPokemon,
-  setSelectedPokemon,
-  setSelectedMark,
-}) => {
+const Dashboard = () => {
+  const { scrollRef, selectedPokemon, setSelectedPokemon, setSelectedMark } =
+    useContext(PokemonContext);
+
   const removePokemon = (target, name) => {
     SwalConfirm(`${name} 을(를) 삭제하시겠습니까?`, "삭제").then((result) => {
       if (result.isConfirmed) {
