@@ -4,7 +4,8 @@ import MOCK_DATA from "../mock";
 import PokemonList from "../components/PokemonList";
 
 const Dex = () => {
-  const [myPokemons, setMyPokemons] = useState(new Array(6).fill('pokeBall'));
+  const [selectedPokemon, setSelectedPokemon] = useState(new Array(6).fill('pokeBall'));
+  const [selectedMark, setSelectedMark] = useState([]);
 
   const scrollRef = useRef();
 
@@ -15,13 +16,16 @@ const Dex = () => {
     <>
       <Dashboard
         scrollRef={scrollRef}
-        myPokemons={myPokemons}
-        setMyPokemons={setMyPokemons}
+        selectedPokemon={selectedPokemon}
+        setSelectedPokemon={setSelectedPokemon}
+        setSelectedMark={setSelectedMark}
       />
       <PokemonList
         MOCK_DATA={MOCK_DATA}
-        myPokemons={myPokemons}
-        setMyPokemons={setMyPokemons}
+        selectedPokemon={selectedPokemon}
+        setSelectedPokemon={setSelectedPokemon}
+        selectedMark={selectedMark}
+        setSelectedMark={setSelectedMark}
       />
       <span
         id="top-scroll"

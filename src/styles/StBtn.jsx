@@ -27,7 +27,8 @@ const StBtn = styled.button`
     }
   }};
 
-  background-color: ${({ children }) => {
+  background-color: ${({ $active, children }) => {
+    if ($active) return "var(--blue-color)";
     switch (children) {
       case "추가":
         return "var(--green-color)";
@@ -56,7 +57,8 @@ const StBtn = styled.button`
   border-radius: 10px;
 
   &:hover {
-    background-color: ${({ children }) => {
+    background-color: ${({ $active, children }) => {
+      if ($active) return "var(--dark-blue-color)";
       switch (children) {
         case "추가":
           return "var(--dark-green-color)";

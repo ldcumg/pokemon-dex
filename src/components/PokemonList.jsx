@@ -1,17 +1,11 @@
 import PokemonCard from "./PokemonCard";
 
-const PokemonList = ({ MOCK_DATA, myPokemons, setMyPokemons }) => {
+const PokemonList = (props) => {
+  const MOCK_DATA = props.MOCK_DATA;
   return (
     <ul id="pokemon-list-container">
       {MOCK_DATA.map((pokemon) => {
-        return (
-          <PokemonCard
-            key={pokemon.id}
-            pokemon={pokemon}
-            myPokemons={myPokemons}
-            setMyPokemons={setMyPokemons}
-          />
-        );
+        return <PokemonCard key={pokemon.id} props={{ ...props, pokemon }} />;
       })}
     </ul>
   );

@@ -13,7 +13,8 @@ const PokemonDetail = () => {
   );
 
   const navigate = useNavigate();
-  const myPokemons = useLocation().state.myPokemons;
+  const selectedPokemon = useLocation().state.selectedPokemon;
+  const selectedMark = useLocation().state.selectedMark;
   const scrollY = useLocation().state.scrollY;
 
   const backRef = useRef(null);
@@ -31,7 +32,9 @@ const PokemonDetail = () => {
         <StBtn
           ref={backRef}
           onClick={() =>
-            navigate("/pokemon-dex", { state: { myPokemons, scrollY } })
+            navigate("/pokemon-dex", {
+              state: { selectedPokemon, selectedMark, scrollY },
+            })
           }
         >
           뒤로 가기

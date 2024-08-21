@@ -3,26 +3,37 @@ import StBtn from "../styles/StBtn";
 import { useEffect, useRef } from "react";
 import { SwalAlert } from "../styles/Swal";
 
-const PokemonCard = ({ pokemon, myPokemons, setMyPokemons }) => {
+const PokemonCard = ({ props }) => {
+  const {
+    pokemon,
+    selectedPokemon,
+    setSelectedPokemon,
+    selectedMark,
+    setSelectedMark,
+  } = props;
+
   const scrollY = useRef();
 
   const linkedScrollY = useLocation().state?.scrollY;
-  const linkedList = useLocation().state?.myPokemons ?? myPokemons;
+  const linkedList = useLocation().state?.selectedPokemon ?? selectedPokemon;
+  const linkedSelectedMark = useLocation().state?.selectedMark ?? selectedMark;
   useEffect(() => {
     window.scrollTo({
       top: linkedScrollY?.current,
     });
-    setMyPokemons(linkedList);
+    setSelectedPokemon(linkedList);
+    setSelectedMark(linkedSelectedMark);
   }, []);
 
   const addPokemon = () => {
-    if (!myPokemons.includes("pokeBall")) {
+    console.log("selectedPokemon", selectedPokemon);
+    if (!selectedPokemon.includes("pokeBall")) {
       SwalAlert("소유할 수 있는 포켓몬이 가득 찼습니다.", "error");
       return;
     }
 
     if (
-      myPokemons.some((myPokemon) => {
+      selectedPokemon.some((myPokemon) => {
         return myPokemon.id === pokemon.id;
       })
     ) {
@@ -35,16 +46,17 @@ const PokemonCard = ({ pokemon, myPokemons, setMyPokemons }) => {
       name: pokemon.korean_name,
       id: pokemon.id,
     };
-    const pokeBallIndex = myPokemons.indexOf("pokeBall");
-    setMyPokemons(
-      myPokemons.map((item, index) => {
+    const pokeBallIndex = selectedPokemon.indexOf("pokeBall");
+    setSelectedPokemon(
+      selectedPokemon.map((item, index) => {
         if (index === pokeBallIndex) return newPokemon;
         return item;
       })
     );
-    const selectedPokemonNum = myPokemons.filter(
+    const selectedPokemonNum = selectedPokemon.filter(
       (item) => item !== "pokeBall"
     ).length;
+    setSelectedMark((prev) => [...prev, pokemon.id]);
     SwalAlert(
       `${pokemon.korean_name} 이(가) 추가되었습니다.`,
       "success",
@@ -58,13 +70,15 @@ const PokemonCard = ({ pokemon, myPokemons, setMyPokemons }) => {
       <Link
         onClick={() => (scrollY.current = window.scrollY)}
         to={`/pokemon-detail?id=${pokemon.id}`}
-        state={{ myPokemons, scrollY }}
+        state={{ selectedPokemon, selectedMark, scrollY }}
       >
         <img src={pokemon.img_url} alt={pokemon.korean_name} />
         <div>{pokemon.korean_name}</div>
         <div>No.{pokemon.id}</div>
       </Link>
-      <StBtn onClick={addPokemon}>추가</StBtn>
+      <StBtn $active={selectedMark.includes(pokemon.id)} onClick={addPokemon}>
+        추가
+      </StBtn>
     </li>
   );
 };
