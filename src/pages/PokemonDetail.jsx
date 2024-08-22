@@ -13,9 +13,8 @@ const PokemonDetail = () => {
   );
 
   const navigate = useNavigate();
-  const selectedPokemon = useLocation().state.selectedPokemon;
-  const selectedMark = useLocation().state.selectedMark;
-  const scrollY = useLocation().state.scrollY;
+
+  const { current } = useLocation().state.connect;
 
   const backRef = useRef(null);
   useEffect(() => {
@@ -33,7 +32,7 @@ const PokemonDetail = () => {
           ref={backRef}
           onClick={() =>
             navigate("/pokemon-dex", {
-              state: { selectedPokemon, selectedMark, scrollY },
+              state: { current },
             })
           }
         >
