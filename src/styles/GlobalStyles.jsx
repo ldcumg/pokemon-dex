@@ -45,6 +45,7 @@ div{
 
 .press-sign{
   font-size: 18px;
+  font-style: italic;
   color:white;
   animation: blink-effect 1s step-end infinite;
 }
