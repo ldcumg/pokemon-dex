@@ -1,26 +1,17 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import StBtn from "../styles/StBtn";
-import { useEffect, useRef } from "react";
 import { SwalAlert } from "../styles/Swal";
 import { useContext } from "react";
 import { PokemonContext } from "../context/PokemonContext";
 
 const PokemonCard = ({ pokemon }) => {
-  const { selectedPokemon, setSelectedPokemon, selectedMark, setSelectedMark } =
-    useContext(PokemonContext);
-
-  const scrollY = useRef();
-
-  const linkedScrollY = useLocation().state?.scrollY;
-  const linkedList = useLocation().state?.selectedPokemon ?? selectedPokemon;
-  const linkedSelectedMark = useLocation().state?.selectedMark ?? selectedMark;
-  useEffect(() => {
-    window.scrollTo({
-      top: linkedScrollY?.current,
-    });
-    setSelectedPokemon(linkedList);
-    setSelectedMark(linkedSelectedMark);
-  }, []);
+  const {
+    selectedPokemon,
+    setSelectedPokemon,
+    selectedMark,
+    setSelectedMark,
+    connect,
+  } = useContext(PokemonContext);
 
   const addPokemon = () => {
     if (!selectedPokemon.includes("pokeBall")) {
@@ -64,9 +55,13 @@ const PokemonCard = ({ pokemon }) => {
   return (
     <li className="pokemons">
       <Link
-        onClick={() => (scrollY.current = window.scrollY)}
+        onClick={() => {
+          connect.current.selectedPokemon = selectedPokemon;
+          connect.current.selectedMark = selectedMark;
+          connect.current.scrollY = window.scrollY;
+        }}
         to={`/pokemon-detail?id=${pokemon.id}`}
-        state={{ selectedPokemon, selectedMark, scrollY }}
+        state={{ connect }}
       >
         <img src={pokemon.img_url} alt={pokemon.korean_name} />
         <div>{pokemon.korean_name}</div>
