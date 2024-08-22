@@ -16,7 +16,9 @@ const Home = () => {
       <StBtn
         ref={startRef}
         onClick={() => {
-          navigate("/pokemon-dex");
+          navigate("/pokemon-dex", {
+            state: { current: {} },
+          });
         }}
       >
         시작하기
