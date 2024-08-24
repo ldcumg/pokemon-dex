@@ -5,7 +5,7 @@ import { useRef, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { SwalAlert, SwalConfirm } from "../styles/Swal.js";
 import PressSign from "../styles/PressSign.jsx";
-import { add, remove } from "../redux/modules/selectPokemon.js";
+import { add, remove } from "../redux/slices/selectPokemonSlice.js";
 
 const PokemonDetail = () => {
   const [searchParams, setSearchParams] = useSearchParams();

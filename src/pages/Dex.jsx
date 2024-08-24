@@ -3,7 +3,7 @@ import Dashboard from "../components/Dashboard";
 import PokemonList from "../components/PokemonList";
 
 const Dex = () => {
-  const topScrollRef = useRef();
+  const topScrollRef = useRef(null);
 
   const scrollToTop = () => {
     topScrollRef.current.scrollIntoView({ behavior: "smooth" });

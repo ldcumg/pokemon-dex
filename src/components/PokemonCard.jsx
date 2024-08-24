@@ -3,12 +3,11 @@ import StBtn from "../styles/StBtn";
 import { SwalAlert } from "../styles/Swal";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { add } from "../redux/modules/selectPokemon";
-import { setY } from "../redux/modules/yCoordinate";
+import { add } from "../redux/slices/selectPokemonSlice";
+import { setY } from "../redux/slices/yCoordinateSlice";
 
 const PokemonCard = ({ pokemon }) => {
   const selectedPokemon = useSelector((state) => state.selectPokemon);
-
   const isAlreadySelected = selectedPokemon.some(
     (myPokemon) => myPokemon.id === pokemon.id
   );
