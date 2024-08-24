@@ -42,13 +42,11 @@ const Dashboard = ({ topScrollRef }) => {
     );
   };
 
-  selectedPokemon.sort();
-
   return (
     <div ref={topScrollRef} id="my-dashboard">
       <h1>나만의 포켓몬</h1>
       <ul id="my-pokemon-list">
-        {selectedPokemon.map((item) => {
+        {selectedPokemon.sort().map((item) => {
           return item === "pokeBall" ? (
             <li key={crypto.randomUUID()}>
               <img
