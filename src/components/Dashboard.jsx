@@ -48,13 +48,11 @@ const Dashboard = ({
     );
   };
 
-  selectedPokemon.sort();
-
   return (
     <div ref={scrollRef} id="my-dashboard">
       <h1>나만의 포켓몬</h1>
       <ul id="my-pokemon-list">
-        {selectedPokemon.map((item) => {
+        {selectedPokemon.sort().map((item) => {
           if (item === "pokeBall") {
             return (
               <li key={crypto.randomUUID()}>
