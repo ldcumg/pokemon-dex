@@ -1,16 +1,26 @@
 import styled from "styled-components";
 
 const StBtn = styled.button`
+  font-family: "CookieRun-Regular";
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 2px;
+  margin: 0 3px;
+  letter-spacing: ${({ children }) => (children === "초기화" ? "10px" : "2px")};
+
   width: ${({ children }) => {
     switch (children) {
       case "추가":
         return "60px";
       case "삭제":
         return "55px";
-      case "뒤로 가기":
-        return "120px";
-      default:
+      case "시작하기":
         return "200px";
+      case "초기화":
+        return "230px";
+      default:
+        return "100px";
     }
   }};
 
@@ -20,10 +30,12 @@ const StBtn = styled.button`
         return "25px";
       case "삭제":
         return "22px";
-      case "뒤로 가기":
-        return "36px";
-      default:
+      case "시작하기":
         return "50px";
+      case "초기화":
+        return "55px";
+      default:
+        return "40px";
     }
   }};
 
@@ -32,7 +44,9 @@ const StBtn = styled.button`
     switch (children) {
       case "추가":
         return "var(--green-color)";
-      case "뒤로 가기":
+      case "추가하기":
+        return "var(--green-color)";
+      case "뒤로가기":
         return "var(--gray-color)";
       default:
         return "var(--red-color)";
@@ -42,19 +56,17 @@ const StBtn = styled.button`
   font-size: ${({ children }) => {
     switch (children) {
       case "추가":
-        return "14px";
+        return "13px";
       case "삭제":
-        return "12px";
-      case "뒤로 가기":
-        return "18px";
-      default:
+        return "11px";
+      case "시작하기":
         return "30px";
+      case "초기화":
+        return "31px";
+      default:
+        return "15px";
     }
   }};
-
-  color: white;
-  border: none;
-  border-radius: 10px;
 
   &:hover {
     background-color: ${({ $active, children }) => {
@@ -62,7 +74,9 @@ const StBtn = styled.button`
       switch (children) {
         case "추가":
           return "var(--dark-green-color)";
-        case "뒤로 가기":
+        case "추가하기":
+          return "var(--dark-green-color)";
+        case "뒤로가기":
           return "var(--dark-gray-color)";
         default:
           return "var(--dark-red-color)";

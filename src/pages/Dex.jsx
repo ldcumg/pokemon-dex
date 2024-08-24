@@ -1,32 +1,16 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import Dashboard from "../components/Dashboard";
-import MOCK_DATA from "../mock";
 import PokemonList from "../components/PokemonList";
-import { PokemonContext } from "../context/PokemonContext";
 
 const Dex = () => {
-  const [selectedPokemon, setSelectedPokemon] = useState(
-    new Array(6).fill("pokeBall")
-  );
-  const [selectedMark, setSelectedMark] = useState([]);
-
-  const scrollRef = useRef();
+  const topScrollRef = useRef();
 
   const scrollToTop = () => {
-    scrollRef.current.scrollIntoView({ behavior: "smooth" });
+    topScrollRef.current.scrollIntoView({ behavior: "smooth" });
   };
   return (
-    <PokemonContext.Provider
-      value={{
-        MOCK_DATA,
-        scrollRef,
-        selectedPokemon,
-        setSelectedPokemon,
-        selectedMark,
-        setSelectedMark,
-      }}
-    >
-      <Dashboard />
+    <>
+      <Dashboard topScrollRef={topScrollRef} />
       <PokemonList />
       <span
         id="top-scroll"
@@ -35,7 +19,7 @@ const Dex = () => {
       >
         arrow_upward
       </span>
-    </PokemonContext.Provider>
+    </>
   );
 };
 

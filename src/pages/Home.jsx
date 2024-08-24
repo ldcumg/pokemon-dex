@@ -2,11 +2,13 @@ import { useNavigate } from "react-router-dom";
 import StBtn from "../styles/StBtn.jsx";
 import { useEffect } from "react";
 import { useRef } from "react";
+import PressSign from "../styles/PressSign.jsx";
 
 const Home = () => {
-  const startRef = useRef(null);
+  const startBtnRef = useRef(null);
+
   useEffect(() => {
-    startRef.current.focus();
+    startBtnRef.current.focus();
   }, []);
 
   const navigate = useNavigate();
@@ -14,14 +16,16 @@ const Home = () => {
     <div id="start">
       <img id="start-logo" src="./../public/img/logo.png" alt="pokemon-logo" />
       <StBtn
-        ref={startRef}
+        ref={startBtnRef}
         onClick={() => {
           navigate("/pokemon-dex");
         }}
       >
         시작하기
       </StBtn>
-      <div className="press-sign">press enter to start</div>
+      <PressSign $startSign={true}>
+        press enter to start
+      </PressSign>
     </div>
   );
 };

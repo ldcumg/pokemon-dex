@@ -2,17 +2,10 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
-    font-family: 'CookieRun-Regular';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-#root{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 25px 0;
+  font-family: 'CookieRun-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
@@ -27,26 +20,15 @@ body {
   word-break: keep-all;
 }
 
+#root{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 25px 0;
+}
+
 div{
   margin: 5px;
-}
-
-@keyframes blink-effect {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.press-sign{
-  font-size: 18px;
-  color:white;
-  animation: blink-effect 1s step-end infinite;
 }
 
 #pokemon-list-container {
@@ -136,13 +118,36 @@ div{
 
 #detail-container {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  position: fixed;
+}
+
+.material-symbols-rounded {
+  font-size: 100px;
+  color: white;
+  cursor: pointer;
+  user-select:none;
+  font-variation-settings:
+  'wght' 100,
+  'opsz' 48;
+  &:active{
+    opacity: 50%;
+  }
+  &:hover{
+    color: #bdc3c7;
+  }
+}
+
+.block{
+  color: transparent;
+  width: 100px;
+  user-select:none;
 }
 
 #pokemon-detail {
   display: flex;
   flex-direction: column;
-  width: 250px;
+  width: 300px;
   height: 100vh;
   justify-content: center;
   text-align: center;
@@ -163,6 +168,7 @@ div{
   width: 100vw;
   height: 100vh;
   align-items: center;
+  position: fixed;
 }
 
 #start-logo{
@@ -180,6 +186,10 @@ h1{
 
 button {
   cursor: pointer;
+
+  &:active {
+    opacity: 50%;
+  }
 }
 
 div.swal2-icon {
@@ -199,6 +209,12 @@ div.swal2-icon {
 a{
   text-decoration: none;
   color: black;
+}
+
+#detail-btn{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 #top-scroll{

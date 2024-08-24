@@ -1,26 +1,18 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import StBtn from "../styles/StBtn";
-import { useEffect, useRef } from "react";
 import { SwalAlert } from "../styles/Swal";
-import { useContext } from "react";
-import { PokemonContext } from "../context/PokemonContext";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { add } from "../redux/modules/selectPokemon";
+import { setY } from "../redux/modules/yCoordinate";
 
 const PokemonCard = ({ pokemon }) => {
-  const { selectedPokemon, setSelectedPokemon, selectedMark, setSelectedMark } =
-    useContext(PokemonContext);
+  const selectedPokemon = useSelector((state) => state.selectPokemon);
 
-  const scrollY = useRef();
-
-  const linkedScrollY = useLocation().state?.scrollY;
-  const linkedList = useLocation().state?.selectedPokemon ?? selectedPokemon;
-  const linkedSelectedMark = useLocation().state?.selectedMark ?? selectedMark;
-  useEffect(() => {
-    window.scrollTo({
-      top: linkedScrollY?.current,
-    });
-    setSelectedPokemon(linkedList);
-    setSelectedMark(linkedSelectedMark);
-  }, []);
+  const isAlreadySelected = selectedPokemon.some(
+    (myPokemon) => myPokemon.id === pokemon.id
+  );
+  const dispatch = useDispatch();
 
   const addPokemon = () => {
     if (!selectedPokemon.includes("pokeBall")) {
@@ -28,31 +20,17 @@ const PokemonCard = ({ pokemon }) => {
       return;
     }
 
-    if (
-      selectedPokemon.some((myPokemon) => {
-        return myPokemon.id === pokemon.id;
-      })
-    ) {
+    if (isAlreadySelected) {
       SwalAlert("이미 존재하는 포켓몬입니다.", "error");
       return;
     }
 
-    const newPokemon = {
-      img: pokemon.img_url,
-      name: pokemon.korean_name,
-      id: pokemon.id,
-    };
     const pokeBallIndex = selectedPokemon.indexOf("pokeBall");
-    setSelectedPokemon(
-      selectedPokemon.map((item, index) => {
-        if (index === pokeBallIndex) return newPokemon;
-        return item;
-      })
-    );
+    dispatch(add({ pokeBallIndex, newPokemon: pokemon }));
+
     const selectedPokemonNum = selectedPokemon.filter(
       (item) => item !== "pokeBall"
     ).length;
-    setSelectedMark((prev) => [...prev, pokemon.id]);
     SwalAlert(
       `${pokemon.korean_name} 이(가) 추가되었습니다.`,
       "success",
@@ -64,15 +42,14 @@ const PokemonCard = ({ pokemon }) => {
   return (
     <li className="pokemons">
       <Link
-        onClick={() => (scrollY.current = window.scrollY)}
+        onClick={() => dispatch(setY(window.scrollY))}
         to={`/pokemon-detail?id=${pokemon.id}`}
-        state={{ selectedPokemon, selectedMark, scrollY }}
       >
         <img src={pokemon.img_url} alt={pokemon.korean_name} />
         <div>{pokemon.korean_name}</div>
         <div>No.{pokemon.id}</div>
       </Link>
-      <StBtn $active={selectedMark.includes(pokemon.id)} onClick={addPokemon}>
+      <StBtn $active={isAlreadySelected} onClick={addPokemon}>
         추가
       </StBtn>
     </li>
