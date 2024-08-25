@@ -5,19 +5,12 @@ import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
 const PokemonList = () => {
-  const {
-    MOCK_DATA,
-    selectedPokemon,
-    setSelectedPokemon,
-    selectedMark,
-    setSelectedMark,
-  } = useContext(PokemonContext);
+  const { MOCK_DATA, selectedPokemon, setSelectedPokemon } =
+    useContext(PokemonContext);
 
   const connectedScrollY = useLocation().state.current.scrollY ?? 0;
   const connectedList =
     useLocation().state.current.selectedPokemon ?? selectedPokemon;
-  const connectedSelectedMark =
-    useLocation().state.current.selectedMark ?? selectedMark;
 
   useEffect(() => {
     connectedScrollY &&
@@ -25,7 +18,6 @@ const PokemonList = () => {
         top: connectedScrollY,
       });
     setSelectedPokemon(connectedList);
-    setSelectedMark(connectedSelectedMark);
   }, []);
 
   return (

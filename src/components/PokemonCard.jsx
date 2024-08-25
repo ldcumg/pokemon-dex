@@ -5,13 +5,8 @@ import { useContext } from "react";
 import { PokemonContext } from "../context/PokemonContext";
 
 const PokemonCard = ({ pokemon }) => {
-  const {
-    selectedPokemon,
-    setSelectedPokemon,
-    selectedMark,
-    setSelectedMark,
-    connect,
-  } = useContext(PokemonContext);
+  const { selectedPokemon, setSelectedPokemon, connect } =
+  useContext(PokemonContext);
 
   const addPokemon = () => {
     if (!selectedPokemon.includes("pokeBall")) {
@@ -43,7 +38,6 @@ const PokemonCard = ({ pokemon }) => {
     const selectedPokemonNum = selectedPokemon.filter(
       (item) => item !== "pokeBall"
     ).length;
-    setSelectedMark((prev) => [...prev, pokemon.id]);
     SwalAlert(
       `${pokemon.korean_name} 이(가) 추가되었습니다.`,
       "success",
@@ -57,7 +51,6 @@ const PokemonCard = ({ pokemon }) => {
       <Link
         onClick={() => {
           connect.current.selectedPokemon = selectedPokemon;
-          connect.current.selectedMark = selectedMark;
           connect.current.scrollY = window.scrollY;
         }}
         to={`/pokemon-detail?id=${pokemon.id}`}
@@ -67,7 +60,10 @@ const PokemonCard = ({ pokemon }) => {
         <div>{pokemon.korean_name}</div>
         <div>No.{pokemon.id}</div>
       </Link>
-      <StBtn $active={selectedMark.includes(pokemon.id)} onClick={addPokemon}>
+      <StBtn
+        $active={selectedPokemon.some((item) => item.id === pokemon.id)}
+        onClick={addPokemon}
+      >
         추가
       </StBtn>
     </li>

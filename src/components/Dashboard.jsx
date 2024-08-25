@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { PokemonContext } from "../context/PokemonContext";
 
 const Dashboard = () => {
-  const { scrollRef, selectedPokemon, setSelectedPokemon, setSelectedMark } =
+  const { scrollRef, selectedPokemon, setSelectedPokemon } =
     useContext(PokemonContext);
 
   const removePokemon = (target, name) => {
@@ -16,9 +16,6 @@ const Dashboard = () => {
             if (pokemon.id === target) return "pokeBall";
             return pokemon;
           })
-        );
-        setSelectedMark((prev) =>
-          prev.filter((selectedId) => selectedId !== target)
         );
         const selectedPokemonNum = selectedPokemon.filter(
           (item) => item !== "pokeBall"
@@ -39,7 +36,6 @@ const Dashboard = () => {
       (result) => {
         if (result.isConfirmed) {
           setSelectedPokemon(new Array(6).fill("pokeBall"));
-          setSelectedMark([]);
           SwalAlert("포켓몬 목록을 초기화하였습니다.", "success");
         } else {
           SwalAlert("초기화를 취소하였습니다.", "error");

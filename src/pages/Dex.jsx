@@ -8,9 +8,9 @@ const Dex = () => {
   const [selectedPokemon, setSelectedPokemon] = useState(
     new Array(6).fill("pokeBall")
   );
-  const [selectedMark, setSelectedMark] = useState([]);
 
   const scrollRef = useRef();
+  const connect = useRef({});
 
   const scrollToTop = () => {
     scrollRef.current.scrollIntoView({ behavior: "smooth" });
@@ -20,10 +20,9 @@ const Dex = () => {
       value={{
         MOCK_DATA,
         scrollRef,
+        connect,
         selectedPokemon,
         setSelectedPokemon,
-        selectedMark,
-        setSelectedMark,
       }}
     >
       <Dashboard />
