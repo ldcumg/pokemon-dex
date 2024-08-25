@@ -57,7 +57,7 @@ const PokemonCard = ({ props }) => {
         <div>No.{pokemon.id}</div>
       </Link>
       <StBtn
-        $active={setSelectedPokemon.some((item) => item.id === pokemon.id)}
+        $active={selectedPokemon.some((item) => item.id === pokemon.id)}
         onClick={addPokemon}
       >
         추가
