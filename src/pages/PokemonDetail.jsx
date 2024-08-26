@@ -44,9 +44,9 @@ const PokemonDetail = () => {
     };
   }, [targetId]);
 
-  const selectedPokemon = useSelector((state) => state.selectPokemon);
-
   const navigate = useNavigate();
+  
+  const selectedPokemon = useSelector((state) => state.selectPokemon);
   const isAlreadySelected = selectedPokemon.some(
     (myPokemon) => myPokemon.id === targetId
   );

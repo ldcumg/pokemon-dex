@@ -1,7 +1,6 @@
 import { SwalAlert, SwalConfirm } from "../styles/Swal";
 import { add, remove, reset } from "../redux/slices/selectPokemonSlice";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const usePokemon = () => {
   const dispatch = useDispatch();
@@ -13,10 +12,7 @@ const usePokemon = () => {
       return;
     }
 
-    const isAlreadySelected = selectedPokemon.some(
-      (myPokemon) => myPokemon.id === newPokemon.id
-    );
-    if (isAlreadySelected) {
+    if (selectedPokemon.some((myPokemon) => myPokemon.id === newPokemon.id)) {
       SwalAlert("이미 존재하는 포켓몬입니다.", "error");
       return;
     }
