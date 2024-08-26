@@ -1,16 +1,17 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
-import MOCK_DATA from "../mock.js";
+import MOCK_DATA from "../data/mock.js";
 import StBtn from "../styles/StBtn.jsx";
 import { useRef, useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { SwalAlert, SwalConfirm } from "../styles/Swal.js";
+import { useSelector } from "react-redux";
 import PressSign from "../styles/PressSign.jsx";
-import { add, remove } from "../redux/modules/selectPokemon.js";
+import usePokemon from "../hooks/usePokemon.js";
 
 const PokemonDetail = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const targetId = Number(searchParams.get("id"));
   const targetPokemon = MOCK_DATA.find((pokemon) => pokemon.id === targetId);
+
+  const { addPokemon, removePokemon } = usePokemon();
 
   const addRemoveRef = useRef(null);
   const backRef = useRef(null);
@@ -44,53 +45,9 @@ const PokemonDetail = () => {
     };
   }, [targetId]);
 
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const selectedPokemon = useSelector((state) => state.selectPokemon);
-  const selectedPokemonNum = selectedPokemon.filter(
-    (item) => item !== "pokeBall"
-  ).length;
-  const addPokemon = () => {
-    if (!selectedPokemon.includes("pokeBall")) {
-      SwalAlert("소유할 수 있는 포켓몬이 가득 찼습니다.", "error");
-      return;
-    }
-
-    const pokeBallIndex = selectedPokemon.indexOf("pokeBall");
-    dispatch(
-      add({
-        pokeBallIndex,
-        newPokemon: targetPokemon,
-      })
-    );
-    SwalAlert(
-      `${targetPokemon.korean_name} 이(가) 추가되었습니다.`,
-      "success",
-      selectedPokemonNum + 1
-    );
-    return;
-  };
-
-  const removePokemon = () => {
-    SwalConfirm(
-      `${targetPokemon.korean_name} 을(를) 삭제하시겠습니까?`,
-      "삭제"
-    ).then((result) => {
-      if (result.isConfirmed) {
-        dispatch(remove(targetId));
-        SwalAlert(
-          `${targetPokemon.korean_name} 을(를) 삭제했습니다.`,
-          "success",
-          selectedPokemonNum - 1
-        );
-      } else {
-        SwalAlert("삭제를 취소하였습니다.", "error");
-      }
-    });
-    return;
-  };
-
-  const navigate = useNavigate();
   const isAlreadySelected = selectedPokemon.some(
     (myPokemon) => myPokemon.id === targetId
   );
@@ -114,7 +71,11 @@ const PokemonDetail = () => {
         <div id="detail-btn">
           <StBtn
             ref={addRemoveRef}
-            onClick={isAlreadySelected ? removePokemon : addPokemon}
+            onClick={() =>
+              isAlreadySelected
+                ? removePokemon(targetPokemon)
+                : addPokemon(targetPokemon)
+            }
           >
             {isAlreadySelected ? "삭제하기" : "추가하기"}
           </StBtn>
