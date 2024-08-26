@@ -64,7 +64,7 @@ const PokemonDetail = () => {
       )}
       <section id="pokemon-detail">
         <img src={targetPokemon.img_url} alt={targetId} />
-        <h2>{targetPokemon.korean_name}</h2>
+        <h3>{targetPokemon.korean_name}</h3>
         <p>타입 : {targetPokemon.types.join(", ")}</p>
         <p>{targetPokemon.description}</p>
         <div id="detail-btn">

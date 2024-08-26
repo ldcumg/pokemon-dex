@@ -5,7 +5,7 @@ import { setY } from "../redux/slices/yCoordinateSlice";
 import usePokemon from "../hooks/usePokemon";
 
 const Dashboard = ({ topScrollRef }) => {
-  const selectedPokemon = useSelector((state) => state.selectPokemon);
+  const myPokemons = useSelector((state) => state.selectPokemon);
 
   const dispatch = useDispatch();
   const { removePokemon, resetPokemon } = usePokemon();
@@ -14,7 +14,7 @@ const Dashboard = ({ topScrollRef }) => {
     <div ref={topScrollRef} id="my-dashboard">
       <h1>나만의 포켓몬</h1>
       <ul id="my-pokemon-list">
-        {selectedPokemon.map((item) => {
+        {myPokemons.map((item) => {
           return item === "pokeBall" ? (
             <li key={crypto.randomUUID()}>
               <img
