@@ -1,46 +1,14 @@
 import { Link } from "react-router-dom";
 import StBtn from "../styles/StBtn";
-import { SwalAlert, SwalConfirm } from "../styles/Swal";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { setY } from "../redux/slices/yCoordinateSlice";
-import { remove, reset } from "../redux/slices/selectPokemonSlice";
+import usePokemon from "../hooks/usePokemon";
 
 const Dashboard = ({ topScrollRef }) => {
   const selectedPokemon = useSelector((state) => state.selectPokemon);
 
   const dispatch = useDispatch();
-
-  const removePokemon = (target, name) => {
-    SwalConfirm(`${name} 을(를) 삭제하시겠습니까?`, "삭제").then((result) => {
-      if (result.isConfirmed) {
-        dispatch(remove(target));
-        const selectedPokemonNum = selectedPokemon.filter(
-          (item) => item !== "pokeBall"
-        ).length;
-        SwalAlert(
-          `${name} 을(를) 삭제했습니다.`,
-          "success",
-          selectedPokemonNum - 1
-        );
-      } else {
-        SwalAlert("삭제를 취소하였습니다.", "error");
-      }
-    });
-  };
-
-  const resetPokemon = () => {
-    SwalConfirm("정말로 포켓몬 목록을 초기화시키겠습니까?", "초기화").then(
-      (result) => {
-        if (result.isConfirmed) {
-          dispatch(reset());
-          SwalAlert("포켓몬 목록을 초기화하였습니다.", "success");
-        } else {
-          SwalAlert("초기화를 취소하였습니다.", "error");
-        }
-      }
-    );
-  };
+  const { removePokemon, resetPokemon } = usePokemon();
 
   return (
     <div ref={topScrollRef} id="my-dashboard">
@@ -65,7 +33,7 @@ const Dashboard = ({ topScrollRef }) => {
                 <div>{item.korean_name}</div>
                 <div>No.{item.id}</div>
               </Link>
-              <StBtn onClick={() => removePokemon(item.id, item.korean_name)}>
+              <StBtn onClick={() => removePokemon(item)}>
                 삭제
               </StBtn>
             </li>

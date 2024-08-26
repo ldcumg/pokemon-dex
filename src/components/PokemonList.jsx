@@ -1,4 +1,4 @@
-import MOCK_DATA from "./../mock";
+import MOCK_DATA from "./..//data/mock";
 import PokemonCard from "./PokemonCard";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
