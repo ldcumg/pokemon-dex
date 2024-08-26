@@ -51,22 +51,22 @@ const PokemonDetail = () => {
     (myPokemon) => myPokemon.id === targetId
   );
   return (
-    <div id="detail-container">
+    <article id="detail-container">
       {targetId > 1 ? (
-        <span
+        <nav
           onClick={() => setSearchParams({ id: targetId - 1 })}
           className="material-symbols-rounded"
         >
           arrow_back_ios
-        </span>
+        </nav>
       ) : (
         <span className="block">null</span>
       )}
-      <div id="pokemon-detail">
+      <section id="pokemon-detail">
         <img src={targetPokemon.img_url} alt={targetId} />
-        <div>{targetPokemon.korean_name}</div>
-        <div>타입 : {targetPokemon.types.join(", ")}</div>
-        <div>{targetPokemon.description}</div>
+        <h2>{targetPokemon.korean_name}</h2>
+        <p>타입 : {targetPokemon.types.join(", ")}</p>
+        <p>{targetPokemon.description}</p>
         <div id="detail-btn">
           <StBtn
             ref={addRemoveRef}
@@ -86,18 +86,18 @@ const PokemonDetail = () => {
           press enter to{" "}
           {backSign ? "go back" : isAlreadySelected ? "remove" : "select"}
         </PressSign>
-      </div>
+      </section>
       {targetId < 151 ? (
-        <span
+        <nav
           onClick={() => setSearchParams({ id: targetId + 1 })}
           className="material-symbols-rounded"
         >
           arrow_forward_ios
-        </span>
+        </nav>
       ) : (
         <span className="block">null</span>
       )}
-    </div>
+    </article>
   );
 };
 
