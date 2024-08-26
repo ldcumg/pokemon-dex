@@ -1,10 +1,12 @@
 import { useRef, useState } from "react";
 import Dashboard from "../components/Dashboard";
-import MOCK_DATA from "../mock";
+import MOCK_DATA from "../data/mock";
 import PokemonList from "../components/PokemonList";
 
 const Dex = () => {
-  const [selectedPokemon, setSelectedPokemon] = useState(new Array(6).fill('pokeBall'));
+  const [selectedPokemon, setSelectedPokemon] = useState(
+    new Array(6).fill("pokeBall")
+  );
 
   const scrollRef = useRef();
 

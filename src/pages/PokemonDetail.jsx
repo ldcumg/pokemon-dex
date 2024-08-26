@@ -1,5 +1,5 @@
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
-import MOCK_DATA from "../mock.js";
+import MOCK_DATA from "../data/mock.js";
 import StBtn from "../styles/StBtn.jsx";
 import { useRef } from "react";
 import { useEffect } from "react";
