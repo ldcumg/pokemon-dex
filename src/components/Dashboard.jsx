@@ -46,7 +46,7 @@ const Dashboard = ({ topScrollRef }) => {
     <div ref={topScrollRef} id="my-dashboard">
       <h1>나만의 포켓몬</h1>
       <ul id="my-pokemon-list">
-        {selectedPokemon.toSorted().map((item) => {
+        {selectedPokemon.map((item) => {
           return item === "pokeBall" ? (
             <li key={crypto.randomUUID()}>
               <img

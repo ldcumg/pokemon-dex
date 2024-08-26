@@ -6,7 +6,7 @@ const yCoordinateSlice = createSlice({
   name: "yCoordinate",
   initialState,
   reducers: {
-    setY: (state, action) => action.payload,
+    setY: (_, action) => action.payload,
   },
 });
 
