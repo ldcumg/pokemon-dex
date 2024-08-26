@@ -13,10 +13,9 @@ const usePokemon = () => {
       return;
     }
 
-    const isAlreadySelected = selectedPokemon.some(
+    if (selectedPokemon.some(
       (myPokemon) => myPokemon.id === newPokemon.id
-    );
-    if (isAlreadySelected) {
+    )) {
       SwalAlert("이미 존재하는 포켓몬입니다.", "error");
       return;
     }
