@@ -3,6 +3,7 @@ import StBtn from "../styles/StBtn.jsx";
 import { useEffect } from "react";
 import { useRef } from "react";
 import PressSign from "../styles/PressSign.jsx";
+import startLogo from "./../img/logo.png";
 
 const Home = () => {
   const startBtnRef = useRef(null);
@@ -14,7 +15,7 @@ const Home = () => {
   const navigate = useNavigate();
   return (
     <div id="start">
-      <img id="start-logo" src="./../public/img/logo.png" alt="pokemon-logo" />
+      <img id="start-logo" src={startLogo} alt="pokemon-logo" />
       <StBtn
         ref={startBtnRef}
         onClick={() => {
@@ -23,9 +24,7 @@ const Home = () => {
       >
         시작하기
       </StBtn>
-      <PressSign $startSign={true}>
-        press enter to start
-      </PressSign>
+      <PressSign $startSign={true}>press enter to start</PressSign>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import StBtn from "../styles/StBtn";
 import { useSelector, useDispatch } from "react-redux";
 import { setY } from "../redux/slices/yCoordinateSlice";
 import usePokemon from "../hooks/usePokemon";
+import pokeBall from "./../img/poke-ball.png"
 
 const Dashboard = ({ topScrollRef }) => {
   const myPokemons = useSelector((state) => state.selectPokemon);
@@ -17,11 +18,7 @@ const Dashboard = ({ topScrollRef }) => {
         {myPokemons.map((item) => {
           return item === "pokeBall" ? (
             <li key={crypto.randomUUID()}>
-              <img
-                className="pokeballs"
-                src="./../public/img/poke-ball.png"
-                alt="pokeBall"
-              />
+              <img className="pokeballs" src={pokeBall} alt="pokeBall" />
             </li>
           ) : (
             <li className="my-pokemons" key={item.id}>
@@ -33,9 +30,7 @@ const Dashboard = ({ topScrollRef }) => {
                 <h3>{item.korean_name}</h3>
                 <p>No.{item.id}</p>
               </Link>
-              <StBtn onClick={() => removePokemon(item)}>
-                삭제
-              </StBtn>
+              <StBtn onClick={() => removePokemon(item)}>삭제</StBtn>
             </li>
           );
         })}
