@@ -66,11 +66,11 @@ const Dashboard = () => {
                   to={`/pokemon-detail?id=${item.id}`}
                   state={{ selectedPokemon }}
                 >
-                  <img src={item.img} alt={item.name} />
-                  <div>{item.name}</div>
+                  <img src={item.img_url} alt={item.korean_name} />
+                  <div>{item.korean_name}</div>
                   <div>No.{item.id}</div>
                 </Link>
-                <StBtn onClick={() => removePokemon(item.id, item.name)}>
+                <StBtn onClick={() => removePokemon(item.id, item.korean_name)}>
                   삭제
                 </StBtn>
               </li>

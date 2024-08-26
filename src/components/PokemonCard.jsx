@@ -23,15 +23,10 @@ const PokemonCard = ({ pokemon }) => {
       return;
     }
 
-    const newPokemon = {
-      img: pokemon.img_url,
-      name: pokemon.korean_name,
-      id: pokemon.id,
-    };
     const pokeBallIndex = selectedPokemon.indexOf("pokeBall");
     setSelectedPokemon(
       selectedPokemon.map((item, index) => {
-        if (index === pokeBallIndex) return newPokemon;
+        if (index === pokeBallIndex) return pokemon;
         return item;
       })
     );
