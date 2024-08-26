@@ -45,7 +45,11 @@ const PokemonDetail = () => {
   }, [targetId]);
 
   const dispatch = useDispatch();
+
   const selectedPokemon = useSelector((state) => state.selectPokemon);
+  const selectedPokemonNum = selectedPokemon.filter(
+    (item) => item !== "pokeBall"
+  ).length;
   const addPokemon = () => {
     if (!selectedPokemon.includes("pokeBall")) {
       SwalAlert("소유할 수 있는 포켓몬이 가득 찼습니다.", "error");
@@ -59,9 +63,6 @@ const PokemonDetail = () => {
         newPokemon: targetPokemon,
       })
     );
-    const selectedPokemonNum = selectedPokemon.filter(
-      (item) => item !== "pokeBall"
-    ).length;
     SwalAlert(
       `${targetPokemon.korean_name} 이(가) 추가되었습니다.`,
       "success",
@@ -77,9 +78,6 @@ const PokemonDetail = () => {
     ).then((result) => {
       if (result.isConfirmed) {
         dispatch(remove(targetId));
-        const selectedPokemonNum = selectedPokemon.filter(
-          (item) => item !== "pokeBall"
-        ).length;
         SwalAlert(
           `${targetPokemon.korean_name} 을(를) 삭제했습니다.`,
           "success",
@@ -116,15 +114,9 @@ const PokemonDetail = () => {
         <div id="detail-btn">
           <StBtn
             ref={addRemoveRef}
-            onClick={
-              isAlreadySelected
-                ? removePokemon
-                : addPokemon
-            }
+            onClick={isAlreadySelected ? removePokemon : addPokemon}
           >
-            {isAlreadySelected
-              ? "삭제하기"
-              : "추가하기"}
+            {isAlreadySelected ? "삭제하기" : "추가하기"}
           </StBtn>
           <StBtn ref={backRef} onClick={() => navigate("/pokemon-dex")}>
             뒤로가기
@@ -132,11 +124,7 @@ const PokemonDetail = () => {
         </div>
         <PressSign>
           press enter to{" "}
-          {backSign
-            ? "go back"
-            : isAlreadySelected
-            ? "remove"
-            : "select"}
+          {backSign ? "go back" : isAlreadySelected ? "remove" : "select"}
         </PressSign>
       </div>
       {targetId < 151 ? (
