@@ -6,6 +6,7 @@ const Dashboard = ({
   scrollRef,
   selectedPokemon,
   setSelectedPokemon,
+  connect,
 }) => {
   const removePokemon = (target, name) => {
     SwalConfirm(`${name} 을(를) 삭제하시겠습니까?`, "삭제").then((result) => {
@@ -44,7 +45,7 @@ const Dashboard = ({
   };
 
   return (
-    <div ref={scrollRef} id="my-dashboard">
+    <article ref={scrollRef} id="my-dashboard">
       <h1>나만의 포켓몬</h1>
       <ul id="my-pokemon-list">
         {selectedPokemon.sort().map((item) => {
@@ -62,12 +63,15 @@ const Dashboard = ({
             return (
               <li className="my-pokemons" key={item.id}>
                 <Link
+                  onClick={() => {
+                    connect.current.selectedPokemon = selectedPokemon;
+                  }}
                   to={`/pokemon-detail?id=${item.id}`}
-                  state={{ selectedPokemon }}
+                  state={{ connect }}
                 >
                   <img src={item.img_url} alt={item.korean_name} />
-                  <div>{item.korean_name}</div>
-                  <div>No.{item.id}</div>
+                  <h3>{item.korean_name}</h3>
+                  <p>No.{item.id}</p>
                 </Link>
                 <StBtn onClick={() => removePokemon(item.id, item.korean_name)}>
                   삭제
@@ -78,7 +82,7 @@ const Dashboard = ({
         })}
       </ul>
       <StBtn onClick={resetPokemon}>초기화</StBtn>
-    </div>
+    </article>
   );
 };
 

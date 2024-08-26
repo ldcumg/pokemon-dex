@@ -9,6 +9,7 @@ const Dex = () => {
   );
 
   const scrollRef = useRef();
+  const connect = useRef({});
 
   const scrollToTop = () => {
     scrollRef.current.scrollIntoView({ behavior: "smooth" });
@@ -19,11 +20,13 @@ const Dex = () => {
         scrollRef={scrollRef}
         selectedPokemon={selectedPokemon}
         setSelectedPokemon={setSelectedPokemon}
+        connect={connect}
       />
       <PokemonList
         MOCK_DATA={MOCK_DATA}
         selectedPokemon={selectedPokemon}
         setSelectedPokemon={setSelectedPokemon}
+        connect={connect}
       />
       <span
         id="top-scroll"

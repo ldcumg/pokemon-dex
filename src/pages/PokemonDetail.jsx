@@ -22,12 +22,12 @@ const PokemonDetail = () => {
   }, []);
 
   return (
-    <div id="detail-container">
-      <div id="pokemon-detail">
+    <article id="detail-container">
+      <section id="pokemon-detail">
         <img src={targetPokemon.img_url} alt={targetPokemon.id} />
-        <div>{targetPokemon.korean_name}</div>
-        <div>타입 : {targetPokemon.types.join(", ")}</div>
-        <div>{targetPokemon.description}</div>
+        <h3>{targetPokemon.korean_name}</h3>
+        <p>타입 : {targetPokemon.types.join(", ")}</p>
+        <p>{targetPokemon.description}</p>
         <StBtn
           ref={backRef}
           onClick={() =>
@@ -38,9 +38,9 @@ const PokemonDetail = () => {
         >
           뒤로 가기
         </StBtn>
-        <div className="press-sign">press enter to go back</div>
-      </div>
-    </div>
+        <p className="press-sign">press enter to go back</p>
+      </section>
+    </article>
   );
 };
 
