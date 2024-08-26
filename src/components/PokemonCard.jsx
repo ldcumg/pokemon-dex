@@ -20,8 +20,8 @@ const PokemonCard = ({ pokemon }) => {
         to={`/pokemon-detail?id=${pokemon.id}`}
       >
         <img src={pokemon.img_url} alt={pokemon.korean_name} />
-        <div>{pokemon.korean_name}</div>
-        <div>No.{pokemon.id}</div>
+        <h3>{pokemon.korean_name}</h3>
+        <p>No.{pokemon.id}</p>
       </Link>
       <StBtn $active={isAlreadySelected} onClick={() => addPokemon(pokemon)}>
         추가

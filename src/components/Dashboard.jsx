@@ -30,8 +30,8 @@ const Dashboard = ({ topScrollRef }) => {
                 to={`/pokemon-detail?id=${item.id}`}
               >
                 <img src={item.img_url} alt={item.korean_name} />
-                <div>{item.korean_name}</div>
-                <div>No.{item.id}</div>
+                <h3>{item.korean_name}</h3>
+                <p>No.{item.id}</p>
               </Link>
               <StBtn onClick={() => removePokemon(item)}>
                 삭제
