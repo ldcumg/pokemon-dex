@@ -1,6 +1,5 @@
 # 배포주소
-[🔗 포켓몬도감](https://pokemon-dex-psi.vercel.app/)
-[🔗 감정구슬](https://kang-1230.github.io/emotion_balls/) : 감정에 따라서 영화를 추천해주는 서비스를 제공하는 사이트
+[포켓몬도감](https://pokemon-dex-psi.vercel.app/)
 
 # 파일구조
 ```
