@@ -12,6 +12,7 @@
 - styled-components로 css요소에 조건문을 사용할 수 있게되었습니다.
 - useEffect와 useRef의 쓰임과 사용법을 알게되었습니다.
 - redux-persist의 사용법을 알게되었습니다.
+- custom Hook의 사용법과 편리성을 알게되었습니다.
 <br/><br/>
 # 개선점
 - styled-components를 css처럼 사용하지 말고 styled-components의 기능을 살려서 사용하기
