@@ -1,15 +1,15 @@
 # 배포 주소
 [🔗 포켓몬도감](https://pokemon-dex-psi.vercel.app/)
 - react, styled-components, react-router-dom, redux-toolkit, redux-persist를 사용하여 만든 포켓몬도감입니다.
-
+<br/><br/>
 # 주요 기능
 - 최대 6마리의 중복되지 않는 포켓몬을 선택할 수 있습니다.
 - 선택한 포켓몬들은 세션스토리지에 저장됩니다.
 - 디테일페이지에선 키보드만으로도 조작할 수 있도록 만들었습니다.
-
+<br/><br/>
 # 개선점
 - styled-components를 css처럼 사용하지 말고 styled-components의 기능을 살려서 사용하기
-
+<br/><br/>
 # 파일구조
 ```
 포켓몬도감
