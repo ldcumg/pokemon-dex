@@ -1,8 +1,47 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```
+포켓몬도감
+├─ .git
+├─ .gitignore
+├─ README.md
+├─ eslint.config.js
+├─ index.html
+├─ package-lock.json
+├─ package.json
+├─ src
+│  ├─ App.jsx
+│  ├─ components
+│  │  ├─ Dashboard.jsx
+│  │  ├─ PokemonCard.jsx
+│  │  └─ PokemonList.jsx
+│  ├─ data
+│  │  └─ mock.js
+│  ├─ hooks
+│  │  └─ usePokemon.js
+│  ├─ img
+│  │  ├─ favicon.png
+│  │  ├─ logo.png
+│  │  └─ poke-ball.png
+│  ├─ main.jsx
+│  ├─ pages
+│  │  ├─ Dex.jsx
+│  │  ├─ Home.jsx
+│  │  └─ PokemonDetail.jsx
+│  ├─ redux
+│  │  ├─ config
+│  │  │  └─ configStore.js
+│  │  └─ slices
+│  │     ├─ selectPokemonSlice.js
+│  │     └─ yCoordinateSlice.js
+│  ├─ shared
+│  │  └─ Router.jsx
+│  └─ styles
+│     ├─ GlobalStyles.jsx
+│     ├─ PressSign.jsx
+│     ├─ StBtn.jsx
+│     ├─ Swal.js
+│     ├─ common.css
+│     └─ reset.css
+├─ vite.config.js
+└─ yarn.lock
+```
