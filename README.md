@@ -1,4 +1,7 @@
+#배포주소
+https://pokemon-dex-psi.vercel.app/
 
+#파일구조
 ```
 포켓몬도감
 ├─ .git
