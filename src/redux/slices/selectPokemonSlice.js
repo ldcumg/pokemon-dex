@@ -1,32 +1,35 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const strPokeBall = "pokeBall";
+export const STR_POKE_BALL = {
+  korean_name: "포켓볼",
+};
 
-const initialState = new Array(6).fill(strPokeBall);
+const createPokeBall = (id) => {
+  return { ...STR_POKE_BALL, id };
+};
+
+const initialState = Array.from({ length: 6 }, () =>
+  createPokeBall(crypto.randomUUID())
+);
 
 const selectPokemonSlice = createSlice({
   name: "selectPokemon",
   initialState,
   reducers: {
     add: (state, action) => {
-      return state
-        .map((item, index) => {
-          if (index === action.payload.pokeBallIndex)
-            return action.payload.newPokemon;
-          return item;
-        })
-        .sort();
+      return state.map((item, index) => {
+        if (index === action.payload.pokeBallIndex)
+          return action.payload.newPokemon;
+        return item;
+      });
     },
     remove: (state, action) => {
+      state.splice(action.payload, 1);
+      state.push(createPokeBall(crypto.randomUUID()));
       return state
-        .map((pokemon) => {
-          if (pokemon.id === action.payload) return strPokeBall;
-          return pokemon;
-        })
-        .sort();
     },
     reset: () => {
-      return new Array(6).fill(strPokeBall);
+      return initialState;
     },
   },
 });

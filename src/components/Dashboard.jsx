@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setY } from "../redux/slices/yCoordinateSlice";
 import usePokemon from "../hooks/usePokemon";
 import pokeBall from "./../img/poke-ball.png";
-import { strPokeBall } from "../redux/slices/selectPokemonSlice";
+import { STR_POKE_BALL } from "../redux/slices/selectPokemonSlice";
 
 const Dashboard = ({ topScrollRef }) => {
   const myPokemons = useSelector((state) => state.selectPokemon);
@@ -17,8 +17,8 @@ const Dashboard = ({ topScrollRef }) => {
       <h1>나만의 포켓몬</h1>
       <ul id="my-pokemon-list">
         {myPokemons.map((item) => {
-          return item === strPokeBall ? (
-            <li key={crypto.randomUUID()}>
+          return item.korean_name === STR_POKE_BALL.korean_name ? (
+            <li key={item.id}>
               <img className="pokeballs" src={pokeBall} alt="pokeBall" />
             </li>
           ) : (
