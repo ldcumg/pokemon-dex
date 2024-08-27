@@ -8,7 +8,7 @@
 - 디테일페이지에선 키보드만으로도 조작할 수 있도록 만들었습니다.
 <br/><br/>
 # 개선점
-- styled-components를 css처럼 사용하지 말고 styled-components의 기능을 살려서 사용하기
+- styled-components를 css처럼 사용하지 말고 styled-components의 기능을 살려서 사용하기
 <br/><br/>
 # 파일구조
 ```
