@@ -1,5 +1,10 @@
 import { SwalAlert, SwalConfirm } from "../styles/Swal";
-import { add, remove, reset, strPokeBall } from "../redux/slices/selectPokemonSlice";
+import {
+  add,
+  remove,
+  reset,
+  STR_POKE_BALL,
+} from "../redux/slices/selectPokemonSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const usePokemon = () => {
@@ -7,7 +12,11 @@ const usePokemon = () => {
   const selectedPokemon = useSelector((state) => state.selectPokemon);
 
   const addPokemon = (newPokemon) => {
-    if (!selectedPokemon.includes(strPokeBall)) {
+    if (
+      !selectedPokemon.some(
+        (item) => item.korean_name === STR_POKE_BALL.korean_name
+      )
+    ) {
       SwalAlert("소유할 수 있는 포켓몬이 가득 찼습니다.", "error");
       return;
     }
@@ -17,11 +26,13 @@ const usePokemon = () => {
       return;
     }
 
-    const pokeBallIndex = selectedPokemon.indexOf(strPokeBall);
+    const pokeBallIndex = selectedPokemon.findIndex(
+      (item) => item.korean_name === STR_POKE_BALL.korean_name
+    );
     dispatch(add({ pokeBallIndex, newPokemon }));
 
     const selectedPokemonNum = selectedPokemon.filter(
-      (item) => item !== strPokeBall
+      (item) => item.korean_name !== STR_POKE_BALL.korean_name
     ).length;
     SwalAlert(
       `${newPokemon.korean_name} 이(가) 추가되었습니다.`,
@@ -37,9 +48,12 @@ const usePokemon = () => {
       "삭제"
     ).then((result) => {
       if (result.isConfirmed) {
-        dispatch(remove(targetPokemon.id));
+        const targetIndex = selectedPokemon.findIndex(
+          (pokemon) => pokemon.id === targetPokemon.id
+        );
+        dispatch(remove(targetIndex));
         const selectedPokemonNum = selectedPokemon.filter(
-          (item) => item !== strPokeBall
+          (item) => item.korean_name !== STR_POKE_BALL.korean_name
         ).length;
         SwalAlert(
           `${targetPokemon.korean_name} 을(를) 삭제했습니다.`,
