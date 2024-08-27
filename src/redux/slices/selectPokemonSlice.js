@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = new Array(6).fill("pokeBall");
+export const strPokeBall = "pokeBall";
+
+const initialState = new Array(6).fill(strPokeBall);
 
 const selectPokemonSlice = createSlice({
   name: "selectPokemon",
@@ -18,13 +20,13 @@ const selectPokemonSlice = createSlice({
     remove: (state, action) => {
       return state
         .map((pokemon) => {
-          if (pokemon.id === action.payload) return "pokeBall";
+          if (pokemon.id === action.payload) return strPokeBall;
           return pokemon;
         })
         .sort();
     },
     reset: () => {
-      return new Array(6).fill("pokeBall");
+      return new Array(6).fill(strPokeBall);
     },
   },
 });
