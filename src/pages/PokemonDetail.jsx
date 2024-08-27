@@ -16,22 +16,29 @@ const PokemonDetail = () => {
   const backRef = useRef(null);
   const [backSign, setBackSign] = useState(false);
 
+  const arrowKeys = {
+    left: "ArrowLeft",
+    right: "ArrowRight",
+    up: "ArrowUp",
+    down: "ArrowDown",
+  };
+
   useEffect(() => {
     addRemoveRef.current.focus();
     const handleKeyDown = (event) => {
       switch (event.key) {
-        case "ArrowLeft":
+        case arrowKeys.left:
           addRemoveRef.current.focus();
           setBackSign(false);
           break;
-        case "ArrowRight":
+        case arrowKeys.right:
           backRef.current.focus();
           setBackSign(true);
           break;
-        case "ArrowUp":
+        case arrowKeys.up:
           targetId < 151 && setSearchParams({ id: targetId + 1 });
           break;
-        case "ArrowDown":
+        case arrowKeys.down:
           targetId > 1 && setSearchParams({ id: targetId - 1 });
           break;
         default:
@@ -45,7 +52,7 @@ const PokemonDetail = () => {
   }, [targetId]);
 
   const navigate = useNavigate();
-  
+
   const selectedPokemon = useSelector((state) => state.selectPokemon);
   const isAlreadySelected = selectedPokemon.some(
     (myPokemon) => myPokemon.id === targetId
